@@ -19,12 +19,20 @@ services:
     image: mongo
     ports:
       - "27017"
+    volumes:
+       - db-data:/data/db
+
+
+
 
 
   postgres:
     image: postgres:9.6.2
     ports:
       - "5432"
+    volumes:
+       - pg-data:/var/lib/postgresql
+
     environment:
       POSTGRES_DB: postgres
       POSTGRES_USER: postgres
@@ -36,6 +44,13 @@ services:
     image: dpage/pgadmin4
     ports:
       - "8080:80"
+    volumes:
+       - pg-data:/var/lib/postgresql
+
     environment:
       - PGADMIN_DEFAULT_EMAIL=admin@id3m.net
       - PGADMIN_DEFAULT_PASSWORD=postgres
+
+volumes:
+  pg-data:
+  db-data:
