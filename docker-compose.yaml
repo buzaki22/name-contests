@@ -14,6 +14,7 @@ services:
       password: "postgres"
       database: "postgres"
       pg_port: "5432"
+      WAIT_HOSTS: postgres:5432, mongodb:27017
 
   mongodb:
     image: mongo
