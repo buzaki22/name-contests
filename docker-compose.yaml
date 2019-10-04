@@ -31,3 +31,11 @@ services:
       POSTGRES_PASSWORD: postgres
       POSTGRES_ROOT_PASSWORD: postgres
 
+
+  db_gui:
+    image: dpage/pgadmin4
+    ports:
+      - "8080:80"
+    environment:
+      - PGADMIN_DEFAULT_EMAIL=admin@id3m.net
+      - PGADMIN_DEFAULT_PASSWORD=postgres
