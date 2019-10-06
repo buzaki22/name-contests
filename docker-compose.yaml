@@ -18,6 +18,8 @@ services:
       database: "postgres"
       pg_port: "5432"
       WAIT_HOSTS: postgres:5432, mongodb:27017
+    command: tail -f /dev/null
+
 
   mongodb:
     container_name: mongo
@@ -40,13 +42,12 @@ services:
 
 
 
-
   postgres:
     container_name: postgres
 
     image: postgres:9.6.2
     ports:
-      - "5432"
+      - "5432:5432"
     volumes:
        - pg-data:/var/lib/postgresql
     environment:

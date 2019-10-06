@@ -51,3 +51,12 @@ docker volume create --name jenkins_data
 docker run --name jenkins -d -v jenkins_data:/var/jenkins_home -p 8080:8080 -p 50000:50000  jenkins/jenkins:lts
 docker run --name jenkinsci -p 8080:8080 jenkins/
 curl -sL https://deb.nodesource.com/setup_12.x |  -E bash -
+
+
+SELECT
+   *
+FROM
+   pg_catalog.pg_tables
+WHERE
+   schemaname != 'pg_catalog'
+AND schemaname != 'information_schema';
