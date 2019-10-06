@@ -15,7 +15,7 @@ services:
       host: "postgres"
       user: "postgres"
       password: "postgres"
-      database: "postgres"
+      database: "app"
       pg_port: "5432"
       WAIT_HOSTS: postgres:5432, mongodb:27017
     command: tail -f /dev/null

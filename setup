@@ -6,6 +6,9 @@ docker push rg.fr-par.scw.cloud/name/name-contests_app:latest
 docker tag name-contests_web:latest rg.fr-par.scw.cloud/name/name-contests_web:latest
 docker push rg.fr-par.scw.cloud/name/name-contests_web:latest
 
+steps : 
+import sql
+create db : app
 
 
 name-contests_app:latest
