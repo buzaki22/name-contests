@@ -4,7 +4,7 @@ services:
   app:
     build: app/.
     container_name: app
-    image: rg.fr-par.scw.cloud/name/name-contests_app:latest
+    image: rg.fr-par.scw.cloud/name/name-contests_app:d24a
 
     depends_on:
       - postgres
@@ -32,7 +32,7 @@ services:
   web:
     build: nginx/.
     container_name: web
-    image: rg.fr-par.scw.cloud/name/name-contests_web:latest
+    image: rg.fr-par.scw.cloud/name/name-contests_web:d24a
     depends_on:
       - app
     ports:
