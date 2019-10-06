@@ -66,3 +66,5 @@ FROM
 WHERE
    schemaname != 'pg_catalog'
 AND schemaname != 'information_schema';
+
+ASF230fik230
