@@ -59,7 +59,7 @@ services:
   db_gui:
     image: dpage/pgadmin4
     ports:
-      - "8080:80"
+      - "8181:80"
     volumes:
        - pg-data:/var/lib/postgresql
        - pgg-data:/var/lib/pgadmin
