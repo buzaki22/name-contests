@@ -1,0 +1,86 @@
+# docker-compose.yml
+version: "3"
+services:
+  app:
+    build: app/.
+    container_name: app
+    image: rg.fr-par.scw.cloud/name/name-contests_app:{{tag}}
+
+    depends_on:
+      - postgres
+      - mongodb
+    ports:
+      - "3000:3000"
+    environment:
+      host: "postgres"
+      user: "postgres"
+      password: "postgres"
+      database: "app"
+      pg_port: "5432"
+      WAIT_HOSTS: postgres:5432, mongodb:27017
+    command: tail -f /dev/null
+
+
+  mongodb:
+    container_name: mongo
+    image: mongo
+    ports:
+      - "27017:27017"
+    volumes:
+       - db-data:/data/db
+
+  web:
+    build: nginx/.
+    container_name: web
+    image: rg.fr-par.scw.cloud/name/name-contests_web:{{tag}}
+    depends_on:
+      - app
+    ports:
+      - "80:80"
+      - "443:443"
+
+
+
+
+  postgres:
+    container_name: postgres
+
+    image: postgres:9.6.2
+    ports:
+      - "5432:5432"
+    volumes:
+       - pg-data:/var/lib/postgresql
+    environment:
+      POSTGRES_DB: postgres
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_ROOT_PASSWORD: postgres
+  
+  data_srv:
+    container_name: data_srv
+    image: busybox:latest
+    volumes:
+       - pg-data:/var/lib/postgresql
+       - pgg-data:/var/lib/pgadmin
+       - db-data:/data/db
+    command: tail -f /dev/null
+
+
+
+  db_gui:
+    container_name: db_gui
+    image: dpage/pgadmin4
+    ports:
+      - "8181:80"
+    volumes:
+       - pg-data:/var/lib/postgresql
+       - pgg-data:/var/lib/pgadmin
+
+    environment:
+      - PGADMIN_DEFAULT_EMAIL=admin@id3m.net
+      - PGADMIN_DEFAULT_PASSWORD=postgres
+
+volumes:
+  pg-data:
+  db-data:
+  pgg-data:
