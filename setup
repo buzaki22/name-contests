@@ -1,8 +1,15 @@
-docker login rg.fr-par.scw.cloud/name -u nologin -p 06297c6c-84d7-411b-80d6-c5edd17de9bc
-docker pull ubuntu:latest
-docker tag ubuntu:latest rg.fr-par.scw.cloud/name/ubuntu:latest
-docker push rg.fr-par.scw.cloud/name/ubuntu:latest
+# login to remote repo and push new artfact
 
+docker login rg.fr-par.scw.cloud/name -u nologin -p 06297c6c-84d7-411b-80d6-c5edd17de9bc
+docker tag name-contests_app:latest rg.fr-par.scw.cloud/name/name-contests_app:latest
+docker push rg.fr-par.scw.cloud/name/name-contests_app:latest
+docker tag name-contests_web:latest rg.fr-par.scw.cloud/name/name-contests_web:latest
+docker push rg.fr-par.scw.cloud/name/name-contests_web:latest
+
+
+
+name-contests_app:latest
+name-contests_web:latest
 https://hub.docker.com/r/paulczar/omgwtfssl/
 
  curl -L "https://github.com/docker/compose/releases/download/1.23.1/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
