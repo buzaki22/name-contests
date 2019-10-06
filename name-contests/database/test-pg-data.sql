@@ -73,3 +73,16 @@ VALUES
 (3,FALSE,2),
 (4,TRUE,1),
 (4,TRUE,2);
+
+    "name": "Test1",
+    "type": "Dog",
+    "age": 5,
+    "clientMutationId": "abcdef"
+mutation AddNewContest($input: ContestInput!) {
+  AddContest(input: $input) {
+    "name": "Test1",
+    "type": "Dog",
+    "age": 5,
+    "clientMutationId": "abcdef"
+  }
+} 

@@ -1,0 +1,47 @@
+docker login rg.fr-par.scw.cloud/name -u nologin -p 06297c6c-84d7-411b-80d6-c5edd17de9bc
+docker pull ubuntu:latest
+docker tag ubuntu:latest rg.fr-par.scw.cloud/name/ubuntu:latest
+docker push rg.fr-par.scw.cloud/name/ubuntu:latest
+
+https://hub.docker.com/r/paulczar/omgwtfssl/
+
+  db_gui:
+    image: dpage/pgadmin4
+    ports:
+      - "8080:80"
+    environment:
+      - PGADMIN_DEFAULT_EMAIL=admin@id3m.net
+      - PGADMIN_DEFAULT_PASSWORD=postgres
+
+export DOCKER_TLS_VERIFY=1
+export DOCKER_CERT_PATH=/var/root/docker2
+
+export DOCKER_HOST=tcp://example.com:2376
+docker info
+docker run --rm -v /etc/docker/ssl:/server \
+    -v $(pwd)/.docker:/certs \
+    -e SSL_IP=127.0.0.1,172.17.8.101,51.15.240.232,10.12.155.15 \
+    -e SSL_DNS=docker.local -e SSL_KEY=/server/key.pem \
+    -e SSL_CERT=/server/cert.pem paulczar/omgwtfssl
+
+
+0.0.0.0:2376 -H  --tlsverify --tlscacert=/etc/docker/ssl/ca.pem --tlscert=/etc/docker/ssl/cert.pem --tlskey=/etc/docker/ssl/key.pem
+
+docker run --rm -v $(pwd)/.docker:/certs \
+    -e SSL_IP=127.0.0.1,172.17.8.101,51.15.240.232,10.12.155.15 \
+   -e SSL_DNS=docker.local paulczar/omgwtfssl 
+
+docker run --name rm-nginx \
+--network rm \
+-e TZ="$MYTIMEZONE" \
+-p 9899:80 \
+-v `pwd`/nginx/nginx-local-dev.conf:/etc/nginx/nginx.conf:ro \
+-d nginx:1.13.3 >/dev/null &&
+
+ docker run -v /tmp/certs:/certs \
+  -e SSL_SUBJECT=test.example.com   paulczar/omgwtfssl
+
+
+command: bash -c "sleep 5; start.sh"
+command: bash -c "for i in {1..100} ; do if ! curl -s rabbitmq:5672 > /dev/null ; then echo waiting on rabbitmq for $i seconds; sleep $i; fi; done; start.sh"
+
