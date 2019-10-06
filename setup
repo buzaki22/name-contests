@@ -43,6 +43,9 @@ command: bash -c "sleep 5; start.sh"
 command: bash -c "for i in {1..100} ; do if ! curl -s rabbitmq:5672 > /dev/null ; then echo waiting on rabbitmq for $i seconds; sleep $i; fi; done; start.sh"
 
 
+cat docker-compose-test.yaml > docker-compose.yaml
+docker-compose down
+docker-compose up mongodb postgres app
 
 jenkins
 docker pull jenkins
