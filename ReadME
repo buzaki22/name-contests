@@ -1,22 +1,56 @@
- docker run -v /tmp/certs:/certs -e SSL_SUBJECT=sse.id3m.net   paulczar/omgwtfssl
+git clone the repo
+docker-compose up --build
 
- server {
-        listen 443;
-        server_name sse.id3m.net;
-        root html;
-        index index.html index.htm;
-        ssl on;
-        ssl_certificate /tmp/certs/cert.pem;
-        ssl_certificate_key /tmp/certs/key.pem;
-        ssl_session_timeout 5m;
-        ssl_protocols       TLSv1 TLSv1.1 TLSv1.2;
-        ssl_ciphers         HIGH:!aNULL:!MD5;
-    location /
-    {
-      proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
-      proxy_pass http://app:3000;
+### GraphQL deep dive
+
+Run `yarn start:dev` to test
+
+Use `yarn start` in production setting
+
+### Sample query and mutation
+```
+
+query MyContests {
+  me(key: "0000") {
+    id
+    email
+    fullName
+    contestsCount
+    namesCount
+    votesCount
+    contests {
+      id
+      title
+      code
+      status
+      description
+      createdAt
+      names {
+        label
+        createdBy {
+          fullName
+        }
+      }
+    
     }
-
-
-
+    activities {
+      ... on ContestType {
+        header: title
+      }
+      ... on Name {
+        header: label
+			}
+    }
+  }
 }
+
+mutation AddNewContest($input: ContestInput!) {
+  AddContest(input: $input) {
+    id
+    code
+    status
+    description
+  }
+} 
+
+```

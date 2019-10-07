@@ -1,0 +1,9 @@
+to setup SSL we use docker pre-define image that generate SSL
+
+docker run -v /tmp/certs:/certs \
+-e SSL_SUBJECT=test.example.com  \
+paulczar/omgwtfssl
+
+cp certs nginx
+
+setup your domain name in nginx/sse.conf to match new domain
