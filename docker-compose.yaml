@@ -4,8 +4,6 @@ services:
   app:
     build: app/.
     container_name: app
-    image: rg.fr-par.scw.cloud/name/name-contests_app:{{tag}}
-
     depends_on:
       - postgres
       - mongodb
@@ -32,7 +30,6 @@ services:
   web:
     build: nginx/.
     container_name: web
-    image: rg.fr-par.scw.cloud/name/name-contests_web:{{tag}}
     depends_on:
       - app
     ports:
